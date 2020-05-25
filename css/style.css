@@ -1,0 +1,24 @@
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Lato', sans-serif;
+   
+  }
+  body.home {
+    background-image: url(../img/bg.jpg); 
+    font-weight: 100;
+
+  }
+  body.about {
+    background-image: url(../img/bgp1.jpg);
+  }
+  div.myBg{
+    background-color: rgba(100, 54, 11, 0.8);
+  }
+
+  /* podstrona about */
+  h2.myWeigth {
+    font-weight: 700;
+  }
