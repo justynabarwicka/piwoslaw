@@ -22,3 +22,9 @@ body {
   h4.myWeigth {
     font-weight: 700;
   }
+
+  /* podstrona choice */
+.myBtn {
+  border: white solid 1px;
+  background-color: transparent;
+}
