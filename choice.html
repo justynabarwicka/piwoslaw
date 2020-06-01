@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
@@ -9,88 +9,71 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="main.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Piwosław</title>
 </head>
 
-<body class="about">
+<body class="about" ng-controller="MainController as ctrl">
 
     <div class="container">
+
         <div class="row">
+
             <div class="myBg col-lg-10 col-sm-12 min-vh-100 text-center">
+
+               
+
                 <div class="d-flex flex-row justify-content-between align-items-center mt-3">
-                    <a href="../index.html"><img class="mt-3 ml-1 p-2" src="img/logo.png" alt="logo" width="100px"></a>
+                    <a href="index.html"><img class="mt-3 ml-1 p-2" src="img/logo.png" alt="logo" width="100px"></a>
                     <h4 class="myWeigth text-white text-uppercase mt-3 p-2">Co dzisiaj wypić</h4>
+                </div>
+                
+                <div ng-show="ctrl.isBeer()">
+                    <h3 class="text-white">{{ ctrl.beer.name }}</h3>
+                    <img ng-src="{{ctrl.beer.img}}" height="500">
                 </div>
 
                 <div>
                     <form action="">
-                        <!-- <div class="form-group text-right col-6">
-                            <label class="h4 text-white text-uppercase" for="color">Barwa</label>
-                            <select class="form-control text-uppercase " id="color">
-                                <option>Jasna</option>
-                                <option>Brązowa</option>
-                                <option>Ciemna</option>
-                            </select>
-                        </div> -->
+
                         <div class="form-row text-right justify-content-end">
                             <div class="col-lg-6 col-md-10 mt-2 mb-3 mr-5">
-                                <label class="h4 text-white text-uppercase my-3"
-                                    for="color">Barwa</label>
-                                <select class="form-control text-uppercase" id="color">
-                                    <option>Jasna</option>
-                                    <option>Brązowa</option>
-                                    <option>Ciemna</option>
+                                <label class="h4 text-white text-uppercase my-3" for="color">Barwa</label>
+                                <select class="form-control text-uppercase" id="color" ng-model="ctrl.formData.color" ng-options="k as v for (k, v) in ctrl.colors">
+                                    <option value="">Dowolne</option>
                                 </select>
-                                <label class="h4 text-white text-uppercase my-3"
-                                    for="alcohol">Alkohol</label>
-                                <select class="form-control text-uppercase" id="alcohol">
-                                    <option>Słaby</option>
-                                    <option>Średni</option>
-                                    <option>Mocny</option>
+
+                                <label class="h4 text-white text-uppercase my-3" for="alcohol">Alkohol</label>
+                                <select class="form-control text-uppercase" id="alcohol"  ng-model="ctrl.formData.alcohol" ng-options="k as v for (k, v) in ctrl.alcohols">
+                                    <option value="">Dowolne</option>
                                 </select>
-                                <label class="h4 text-white text-uppercase my-3"
-                                    for="gall">Goryczka</label>
-                                <select class="form-control text-uppercase" id="gall">
-                                    <option>Niska</option>
-                                    <option>Średnia</option>
-                                    <option>Mocna</option>
+
+                                <label class="h4 text-white text-uppercase my-3" for="gall">Goryczka</label>
+                                <select class="form-control text-uppercase" id="gall" ng-model="ctrl.formData.gall" ng-options="k as v for (k, v) in ctrl.galls">
+                                    <option value="">Dowolne</option>
                                 </select>
-                                <label class="h4 text-white text-uppercase my-3"
-                                    for="taste1">Smak 1</label>
-                                <select class="form-control text-uppercase" id="taste1">
-                                    <option>Słodowy</option>
-                                    <option>Chmielowy</option>
-                                    <option>Cytrusowy</option>
-                                    <option>Chlebowy</option>
-                                    <option>Bananowy</option>
-                                    <option>Kawowy</option>
-                                    <option>Czekoladowy</option>
-                                    <option>Owocowy</option>
-                                    <option>Suszony owoc</option>
-                                    <option>Wędzony</option>
-                                    <option>Kwaśny</option>
+                                
+                                <label class="h4 text-white text-uppercase my-3" for="taste1">Smak 1</label>
+                                <select class="form-control text-uppercase" id="taste1" ng-model="ctrl.formData.taste" ng-options="k as v for (k, v) in ctrl.tastes">
+                                    <option value="">Dowolne</option>
                                 </select>
-                                <label class="h4 text-white text-uppercase my-3"
-                                    for="taste2">Smak 2</label>
-                                <select class="form-control text-uppercase" id="taste2">
-                                    <option>Słodowy</option>
-                                    <option>Chmielowy</option>
-                                    <option>Cytrusowy</option>
-                                    <option>Chlebowy</option>
-                                    <option>Bananowy</option>
-                                    <option>Kawowy</option>
-                                    <option>Czekoladowy</option>
-                                    <option>Owocowy</option>
-                                    <option>Suszony owoc</option>
-                                    <option>Wędzony</option>
-                                    <option>Kwaśny</option>
+                
+                                <label class="h4 text-white text-uppercase my-3" for="taste2">Smak 2</label>
+                                <select class="form-control text-uppercase" id="taste2"  ng-model="ctrl.formData.taste2" ng-options="k as v for (k, v) in ctrl.tastes">
+                                    <option value="">Dowolne</option>
                                 </select>
-                                <button class="myBtn btn btn-lg my-3 mr-1 font-weight-bold text-white text-uppercase px-4 h1">Gotowe</button>
+                                <button type="button"
+                                    class="myBtn btn btn-lg my-3 mr-1 font-weight-bold text-white text-uppercase px-4 h1"
+                                    ng-click="ctrl.findBeer()">
+                                    Gotowe
+                                </button>
                             </div>
                         </div>
-                        
+
                     </form>
+
 
                 </div>
             </div>
