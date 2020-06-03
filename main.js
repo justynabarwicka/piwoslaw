@@ -36,8 +36,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         "sour": "kwaśny"
 
     }
-
-
+    
     vm.formData = {}
 
     beers = [{
@@ -226,7 +225,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
             "img": "img/barleywine1.png",
             "name": "Komes Barley Wine",
             "color": "brown",
-            "alcohol": "mocny",
+            "alcohol": "high",
             "gall": "medium",
             "taste": "sweet",
             "taste2": "fruit"
@@ -235,9 +234,9 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
             "img": "img/barleywine2.png",
             "name": "Kormoran Barlow Sorbus",
             "color": "brown",
-            "alcohol": "mocny",
+            "alcohol": "high",
             "gall": "medium",
-            "taste": "friut",
+            "taste": "fruit",
             "taste2": "sweet"
         },
         {
@@ -272,6 +271,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
             alcohol: vm.formData.alcohol,
             gall: vm.formData.gall,
             taste: vm.formData.taste,
+            taste2: vm.formData.taste2,
         });
 
 
