@@ -266,9 +266,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
 
     function findBeer() {
 
-        //do tego obiekyu kopiujemy wszytskie nepuste parametry
         var searchParams={}
-        //to jest to co ci kiwedys tam wyslalem
         Object.keys(vm.formData).forEach(key => {
             if (vm.formData[key]) {
                 searchParams[key]=vm.formData[key]
@@ -284,7 +282,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         } else if (items.length === 1) {
             vm.beer = items[0];
         } else {
-            vm.beer = {"name": "Brak wyniku...", "img": "img/kenobi.jpeg"} // jakis img ze smutna mina ze nie znaleziono... ;)
+            vm.beer = {"name": "Brak wyniku...", "img": "img/kenobi.jpeg"} 
         }
         console.log("znaleziono...");
         console.log(vm.beer);
