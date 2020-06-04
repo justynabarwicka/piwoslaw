@@ -41,7 +41,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
 
     beers = [{
             "img": "img/apa1.png",
-            "name": "a ja pale ale ",
+            "name": "a ja pale ale (APA) ",
             "color": "white",
             "alcohol": "medium",
             "gall": "medium",
@@ -59,7 +59,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/lager1.png",
-            "name": " Miłosław Niefiltrowane",
+            "name": " Miłosław Niefiltrowane (lager)",
             "color": "white",
             "alcohol": "medium",
             "gall": "medium",
@@ -68,7 +68,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/lager2.png",
-            "name": "Kormoran Świeże ",
+            "name": "Kormoran Świeże (lager)",
             "color": "white",
             "alcohol": "medium",
             "gall": "medium",
@@ -77,7 +77,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/ipa1.png",
-            "name": "Pinta - Atak Chmielu",
+            "name": "Pinta - Atak Chmielu (IPA)",
             "color": "white",
             "alcohol": "medium",
             "gall": "high",
@@ -86,7 +86,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/ipa2.png",
-            "name": "AleBrowar - Rowing Jack",
+            "name": "AleBrowar - Rowing Jack (IPA)",
             "color": "white",
             "alcohol": "medium",
             "gall": "high",
@@ -124,7 +124,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/weizen2.png",
-            "name": "Amber Pszeniczne",
+            "name": "Amber Pszeniczne (weizen)",
             "color": "white",
             "alcohol": "medium",
             "gall": "weak",
@@ -133,7 +133,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/stout1.png",
-            "name": "Guinness",
+            "name": "Guinness (stout)",
             "color": "black",
             "alcohol": "weak",
             "gall": "medium",
@@ -151,7 +151,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/fruitale1.png",
-            "name": "bezalkoholowe Mango ALE",
+            "name": "bezalkoholowe Mango ALE (FruitAle)",
             "color": "white",
             "alcohol": "weak",
             "gall": "weak",
@@ -160,7 +160,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/fruitale2.png",
-            "name": "EL FRUTO",
+            "name": "EL FRUTO (FruitAle)",
             "color": "white",
             "alcohol": "high",
             "gall": "weak",
@@ -205,7 +205,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/gose1.png",
-            "name": "Let’s Cook Mango",
+            "name": "Let’s Cook Mango (gose)",
             "color": "white",
             "alcohol": "weak",
             "gall": "weak",
@@ -214,7 +214,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/gose2.png",
-            "name": "Let’s Cook Mango PassionFriut",
+            "name": "Let’s Cook Mango PassionFriut (gose)",
             "color": "white",
             "alcohol": "weak",
             "gall": "weak",
@@ -223,7 +223,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/barleywine1.png",
-            "name": "Komes Barley Wine",
+            "name": "Komes Barley Wine (barleywine)",
             "color": "brown",
             "alcohol": "high",
             "gall": "medium",
@@ -232,7 +232,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/barleywine2.png",
-            "name": "Kormoran Barlow Sorbus",
+            "name": "Kormoran Barlow Sorbus (barleywine)",
             "color": "brown",
             "alcohol": "high",
             "gall": "medium",
@@ -241,7 +241,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/lambic1.png",
-            "name": "Boon",
+            "name": "Boon (lambic)",
             "color": "white",
             "alcohol": "medium",
             "gall": "weak",
@@ -250,7 +250,7 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
         },
         {
             "img": "img/lambic2.png",
-            "name": "Lindemans",
+            "name": "Lindemans (lambic)",
             "color": "white",
             "alcohol": "medium",
             "gall": "weak",
@@ -265,22 +265,28 @@ angular.module("myApp", []).controller("MainController", ["$scope", "$timeout", 
     vm.tastes = taste;
 
     function findBeer() {
-        console.log(vm.formData);
-        var items = $filter('filter')(beers, {
-            color: vm.formData.color,
-            alcohol: vm.formData.alcohol,
-            gall: vm.formData.gall,
-            taste: vm.formData.taste,
-            taste2: vm.formData.taste2,
+
+        //do tego obiekyu kopiujemy wszytskie nepuste parametry
+        var searchParams={}
+        //to jest to co ci kiwedys tam wyslalem
+        Object.keys(vm.formData).forEach(key => {
+            if (vm.formData[key]) {
+                searchParams[key]=vm.formData[key]
+            }
         });
-
-
+        console.log("parametry wyszukiwania...");
+        console.log(searchParams);
+        var items = $filter('filter')(beers, searchParams);
+    
         if (items.length > 1) {
             var rand = Math.floor(Math.random() * items.length);
             vm.beer = items[rand];
-        } else {
+        } else if (items.length === 1) {
             vm.beer = items[0];
+        } else {
+            vm.beer = {"name": "Brak wyniku...", "img": "img/kenobi.jpeg"} // jakis img ze smutna mina ze nie znaleziono... ;)
         }
+        console.log("znaleziono...");
         console.log(vm.beer);
     }
 
